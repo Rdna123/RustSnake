@@ -16,6 +16,10 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Setup for nightly
+      run: rustup override set nightly
+    - name: Compoents
+      run: cargo install cargo-bintools && rustup component add llvm-tools-preview
     - name: Build
       run: cargo build --verbose
     - name: Run tests
