@@ -46,12 +46,7 @@ jobs:
 
       - name: Setup
         run: cargo install -f cargo-binutils && rustup component add llvm-tools-preview
-        
-      - name: Build
-        run: cargo check
-        env:
-          CARGO_INCREMENTAL: 0
-          RUSTFLAGS: "-C debuginfo=0 -D warnings"
+      
           
       - uses: actions/checkout@master
       - name: Compile and release
@@ -90,11 +85,11 @@ jobs:
             target
           key: ${{ runner.os }}-cargo-check-test-${{ matrix.toolchain }}-${{ hashFiles('**/Cargo.lock') }}
 
-      - name: Check wasm
-        uses: actions-rs/cargo@v1
-        with:
-          command: check
-          args: --target wasm32-unknown-unknown --no-default-features --features bevy_winit,x11,hdr,bevy_gltf
+#       - name: Check wasm
+#         uses: actions-rs/cargo@v1
+#         with:
+#           command: check
+#           args: --target wasm32-unknown-unknown --no-default-features --features bevy_winit,x11,hdr,bevy_gltf
 
 #   build-android:
 #     runs-on: ubuntu-latest
