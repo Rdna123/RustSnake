@@ -44,6 +44,9 @@ jobs:
         run: sudo apt-get update; sudo apt-get install --no-install-recommends libudev-dev
         if: ${{ runner.os == 'Linux' }}
 
+      - name: Setup
+        run: cargo install -f cargo-binutils && rustup component add llvm-tools-preview
+        
       - name: Build
         run: cargo check
         env:
